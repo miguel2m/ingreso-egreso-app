@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-ingreso-egreso',
@@ -7,10 +8,15 @@ import { Component, OnInit } from '@angular/core';
   ]
 })
 export class IngresoEgresoComponent implements OnInit {
-
-  constructor() { }
+  ingresoEgresoForm: FormGroup;
+  constructor(private fb: FormBuilder) { }
 
   ngOnInit(): void {
+    /*this.ingresoEgresoForm = this.fb.group({
+      nombre:['',Validators.required],
+      email:['',[Validators.required,Validators.email]],
+      password:['',Validators.required]
+    });*/
   }
 
 }
