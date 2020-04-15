@@ -42,7 +42,7 @@ export class AuthService {
   initAuthListener(){
     this.auth.authState.subscribe(fuser =>{
       if(fuser){
-        this.fireStore.doc(`${fuser.uid}/usuario`).valueChanges()
+        this.userSubscription =this.fireStore.doc(`${fuser.uid}/usuario`).valueChanges()
         .subscribe( (fireStoreUser :any) =>{
           //console.log({fireStoreUser});
           const user = Usuario.fromFireStore(fireStoreUser);
@@ -51,6 +51,7 @@ export class AuthService {
         })
         
       }else{
+        this.userSubscription.unsubscribe();
         this.store.dispatch(unSetUser());
       }
       
